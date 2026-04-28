@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roastery QR Experience</title>
+
+  <style>
+    :root {
+      --bg: #0E0E0E;
+      --card: #171717;
+      --card-soft: #1F1F1F;
+      --text: #FFFFFF;
+      --muted: #A8A8A8;
+      --line: rgba(255,255,255,0.1);
+      --yellow: #F2C94C;
+      --yellow-dark: #D8AA22;
+      --yellow-soft: rgba(242,201,76,0.14);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Inter", "Segoe UI", sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 20px 18px 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(242,201,76,0.22), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .brand-logo {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero {
+      padding: 24px 0 28px;
+    }
+
+    .roastery {
+      color: var(--yellow);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 46px;
+      line-height: 0.98;
+      margin: 0 0 18px;
+      font-weight: 850;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      padding: 18px 20px;
+      background: var(--yellow);
+      color: #111;
+      font-size: 17px;
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 0 12px 40px rgba(242,201,76,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .primary-btn:active {
+      transform: scale(0.98);
+    }
+
+    .section {
+      margin-top: 34px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 820;
+      margin: 0;
+    }
+
+    .section-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--card), #121212);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .flavor-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .flavor-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .flavor-card.strong {
+      background: var(--yellow-soft);
+      border-color: rgba(242,201,76,0.35);
+    }
+
+    .flavor-name {
+      font-size: 19px;
+      font-weight: 850;
+    }
+
+    .flavor-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .intensity {
+      color: var(--yellow);
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 850;
+      color: var(--yellow);
+    }
+
+    .stat-label {
+      margin-top: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .recipe-list {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .recipe-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .recipe-row strong {
+      color: var(--text);
+    }
+
+    .timer-box {
+      margin-top: 18px;
+      background: #0D0D0D;
+      border: 1px solid rgba(242,201,76,0.25);
+      border-radius: 24px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .timer {
+      font-size: 52px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      color: var(--yellow);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .story {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .info-item {
+      background: rgba(255,255,255,0.045);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .info-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .info-value {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .feedback {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feedback button {
+      text-align: left;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 500px;
+      background: rgba(18,18,18,0.86);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 10px;
+      z-index: 50;
+    }
+
+    .bottom-bar button {
+      border-radius: 16px;
+      padding: 15px 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .bottom-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+
+    .bottom-primary {
+      border: none;
+      background: var(--yellow);
+      color: #111;
+    }
+
+    .b2b {
+      background:
+        radial-gradient(circle at top right, rgba(242,201,76,0.16), transparent 42%),
+        linear-gradient(180deg, #181818, #111);
+    }
+
+    .small-copy {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    @media (min-width: 760px) {
+      .page {
+        max-width: 620px;
+      }
+
+      h1 {
+        font-size: 58px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow"></div>
+
+  <main class="page">
+    <div class="content">
+      <header class="brand-bar">
+        <div class="brand-logo">ROASTERY WINGS</div>
+        <div class="badge">QR Coffee Guide</div>
+      </header>
+
+      <section class="hero">
+        <div class="roastery">Kook Coffee Roasters</div>
+        <h1>Colombia<br />Yellow Bourbon</h1>
+        <p class="subtitle">
+          잘 익은 오렌지, 꿀 같은 단맛, 깨끗한 여운이 이어지는 데일리 필터 커피.
+        </p>
+        <button class="primary-btn" onclick="buyCoffee()">
+          이 원두 다시 구매하기
+        </button>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Flavor</h2>
+          <span class="section-label">한눈에 보는 맛</span>
+        </div>
+
+        <div class="card flavor-grid">
+          <div class="flavor-card strong">
+            <div>
+              <div class="flavor-name">Citrus</div>
+              <div class="flavor-note">밝은 오렌지 산미</div>
+            </div>
+            <div class="intensity">●●●●○</div>
+          </div>
+
+          <div class="flavor-card">
+            <div>
+              <div class="flavor-name">Honey</div>
+              <div class="flavor-note">부드러운 단맛</div>
+            </div>
+            <div class="intensity">●●●○○</div>
+          </div>
+
+          <div class="flavor-card">
+            <div>
+              <div class="flavor-name">Clean</div>
+              <div class="flavor-note">맑고 긴 여운</div>
+            </div>
+            <div class="intensity">●●●●○</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Balance</h2>
+          <span class="section-label">취향 판단</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">4.0</div>
+            <div class="stat-label">Acidity</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">3.5</div>
+            <div class="stat-label">Sweetness</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">3.0</div>
+            <div class="stat-label">Body</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Brew Recipe</h2>
+          <span class="section-label">실패 줄이는 추출</span>
+        </div>
+
+        <div class="card">
+          <div class="recipe-list">
+            <div class="recipe-row">
+              <span>원두</span>
+              <strong>20g</strong>
+            </div>
+            <div class="recipe-row">
+              <span>물</span>
+              <strong>300g</strong>
+            </div>
+            <div class="recipe-row">
+              <span>물 온도</span>
+              <strong>92°C</strong>
+            </div>
+            <div class="recipe-row">
+              <span>분쇄도</span>
+              <strong>중간보다 살짝 굵게</strong>
+            </div>
+            <div class="recipe-row">
+              <span>총 추출 시간</span>
+              <strong>2:30</strong>
+            </div>
+          </div>
+
+          <div class="timer-box">
+            <div class="timer" id="timer">02:30</div>
+            <div class="timer-actions">
+              <button class="secondary-btn" onclick="startTimer()">타이머 시작</button>
+              <button class="secondary-btn" onclick="resetTimer()">초기화</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Origin</h2>
+          <span class="section-label">짧고 정확하게</span>
+        </div>
+
+        <div class="card">
+          <p class="story">
+            이 커피는 콜롬비아 고지대에서 재배된 옐로우 버번 품종으로,
+            밝은 산미와 단맛의 균형이 좋습니다. 복잡한 설명보다 실제로 마셨을 때
+            “깨끗하고 달다”는 인상을 주는 커피입니다.
+          </p>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">Country</div>
+              <div class="info-value">Colombia</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Variety</div>
+              <div class="info-value">Yellow Bourbon</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Process</div>
+              <div class="info-value">Washed</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Roast</div>
+              <div class="info-value">Light Medium</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Did you like it?</h2>
+          <span class="section-label">센서리 기록</span>
+        </div>
+
+        <div class="card feedback">
+          <button class="secondary-btn">산미가 좋았어요</button>
+          <button class="secondary-btn">단맛이 좋았어요</button>
+          <button class="secondary-btn">더 진한 커피를 추천받고 싶어요</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card b2b">
+          <h2 class="section-title">카페 사장님이신가요?</h2>
+          <p class="small-copy">
+            이 원두가 마음에 들었다면 로스터리 납품 문의로 바로 연결할 수 있습니다.
+            QR은 단순 정보 페이지가 아니라 재구매와 B2B 문의를 만드는 전환 시스템입니다.
+          </p>
+          <br />
+          <button class="primary-btn" onclick="b2bInquiry()">납품 문의하기</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="bottom-bar">
+    <button class="bottom-secondary" onclick="scrollToRecipe()">레시피 보기</button>
+    <button class="bottom-primary" onclick="buyCoffee()">다시 구매하기</button>
+  </nav>
+
+  <script>
+    let totalSeconds = 150;
+    let currentSeconds = totalSeconds;
+    let timerInterval = null;
+
+    function updateTimer() {
+      const min = String(Math.floor(currentSeconds / 60)).padStart(2, "0");
+      const sec = String(currentSeconds % 60).padStart(2, "0");
+      document.getElementById("timer").textContent = `${min}:${sec}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+
+      timerInterval = setInterval(() => {
+        if (currentSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          return;
+        }
+
+        currentSeconds--;
+        updateTimer();
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      currentSeconds = totalSeconds;
+      updateTimer();
+    }
+
+    function buyCoffee() {
+      alert("구매 페이지로 이동합니다.");
+      // 실제 연결 예시:
+      // window.location.href = "https://your-store.com/products/coffee";
+    }
+
+    function b2bInquiry() {
+      alert("납품 문의 페이지로 이동합니다.");
+      // 실제 연결 예시:
+      // window.location.href = "https://your-store.com/b2b";
+    }
+
+    function scrollToRecipe() {
+      const recipe = document.querySelector(".section:nth-of-type(4)");
+      recipe.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
