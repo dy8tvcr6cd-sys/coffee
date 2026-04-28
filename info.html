@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Info</title>
+<style>
+:root{--bg:#F6F1E8;--card:#FFFDFC;--text:#1F1A16;--muted:#746B61;--line:rgba(31,26,22,.1);--brown:#2D2118;--accent:#C99A2E;--citrus:#F28A2E;--honey:#D6A93A;--clean:#8FC7D9}
+*{box-sizing:border-box}
+body{margin:0;background:#F6F1E8;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Pretendard",sans-serif;letter-spacing:-.03em}
+.wrap{max-width:520px;margin:0 auto;padding:22px 16px 96px}
+h1{font-size:38px;margin:0 0 16px}
+.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:16px;box-shadow:0 16px 44px rgba(45,33,24,.08)}
+p{color:var(--muted);line-height:1.65}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item{background:white;border:1px solid var(--line);border-radius:18px;padding:16px}
+.label{font-size:12px;color:var(--muted);margin-bottom:6px}
+.value{font-weight:900}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block;margin-right:8px}
+.flavor{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 0 12px;backdrop-filter:blur(18px)}
+.nav a{text-align:center;text-decoration:none;color:var(--muted);font-size:12px;font-weight:800}
+.nav a.active{color:var(--brown)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Coffee Info</h1>
+
+  <section class="card">
+    <h2>Colombia Yellow Bourbon</h2>
+    <p>
+      이 커피는 밝은 산미와 부드러운 단맛, 깨끗한 여운이 특징입니다.
+      복잡하게 무겁기보다, 편하게 마시면서도 선명한 인상을 남기는 타입입니다.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Origin</h2>
+    <div class="grid">
+      <div class="item"><div class="label">Country</div><div class="value">Colombia</div></div>
+      <div class="item"><div class="label">Variety</div><div class="value">Yellow Bourbon</div></div>
+      <div class="item"><div class="label">Process</div><div class="value">Washed</div></div>
+      <div class="item"><div class="label">Roast</div><div class="value">Light Medium</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Flavor Notes</h2>
+
+    <div class="flavor">
+      <strong><span class="dot" style="background:var(--citrus)"></span>Citrus</strong>
+      <p>오렌지처럼 밝고 선명한 산미가 첫인상을 만듭니다.</p>
+    </div>
+
+    <div class="flavor">
+      <strong><span class="dot" style="background:var(--honey)"></span>Honey</strong>
+      <p>산미 뒤로 꿀 같은 부드러운 단맛이 이어집니다.</p>
+    </div>
+
+    <div class="flavor">
+      <strong><span class="dot" style="background:var(--clean)"></span>Clean</strong>
+      <p>마신 뒤 입안에 남는 느낌이 맑고 깔끔합니다.</p>
+    </div>
+  </section>
+</div>
+
+<nav class="nav">
+  <a href="index.html">Home</a>
+  <a href="brew.html">Brew</a>
+  <a href="info.html" class="active">Info</a>
+  <a href="buy.html">Buy</a>
+</nav>
+</body>
+</html>
