@@ -6,64 +6,173 @@
   <title>Vivid Geisha Brew</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
       background: #080808;
       color: #fff;
     }
-    .page { padding: 28px 20px 100px; }
-    .top { color: #8e8e8e; font-size: 13px; margin-bottom: 22px; }
-    h1 {
-      font-size: 36px;
-      letter-spacing: -0.05em;
-      margin: 0 0 24px;
-    }
-    .recipe-card {
-      padding: 24px;
-      border-radius: 30px;
+
+    .page {
+      min-height: 100vh;
+      padding: 28px 20px 100px;
       background:
-        radial-gradient(circle at 80% 0%, rgba(255,209,92,.14), transparent 40%),
-        #141414;
-      border: 1px solid rgba(255,255,255,.09);
+        radial-gradient(circle at 80% 10%, rgba(255, 212, 92, .16), transparent 35%),
+        radial-gradient(circle at 10% 80%, rgba(255, 88, 140, .14), transparent 38%),
+        #080808;
     }
-    .timer {
-      font-size: 58px;
-      letter-spacing: -0.05em;
-      text-align: center;
-      margin: 28px 0;
+
+    .brand {
+      font-size: 13px;
+      color: #9c9c9c;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 52px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      font-size: 13px;
+      color: #d8d8d8;
+      background: rgba(255,255,255,.04);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      margin: 0;
+    }
+
+    .desc {
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #b8b8b8;
+    }
+
+    .recipe-card {
+      margin-top: 42px;
+      padding: 22px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    }
+
+    .recipe-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .recipe-meta {
+      margin-top: 8px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .recipe-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 14px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .chip-label {
+      font-size: 11px;
+      color: #8f8f8f;
+      margin-bottom: 5px;
+    }
+
+    .chip-value {
+      font-size: 15px;
       font-weight: 700;
     }
-    .step {
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      display: flex;
-      justify-content: space-between;
-      color: #cfcfcf;
+
+    .timer-box {
+      margin-top: 26px;
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(0,0,0,.24);
+      border: 1px solid rgba(255,255,255,.08);
+      text-align: center;
     }
-    .step:last-child { border-bottom: none; }
+
+    .timer {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .current-step {
+      margin-top: 8px;
+      color: #ffd15c;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
     button {
-      width: 100%;
-      height: 58px;
+      height: 54px;
       border: none;
-      border-radius: 20px;
+      border-radius: 18px;
+      font-size: 15px;
+      font-weight: 800;
+      font-family: inherit;
+    }
+
+    .primary {
       background: #fff;
       color: #000;
-      font-size: 16px;
-      font-weight: 700;
-      margin-top: 22px;
     }
-    .subbtn {
+
+    .secondary {
       background: rgba(255,255,255,.09);
       color: #fff;
-      margin-top: 10px;
+      border: 1px solid rgba(255,255,255,.08);
     }
-    .guide {
-      margin-top: 30px;
-      color: #b8b8b8;
-      font-size: 15px;
-      line-height: 1.7;
+
+    .steps {
+      margin-top: 22px;
     }
+
+    .step {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: #d4d4d4;
+      font-size: 14px;
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .time {
+      color: #8f8f8f;
+      font-size: 13px;
+    }
+
     .nav {
       position: fixed;
       left: 16px;
@@ -76,7 +185,9 @@
       border: 1px solid rgba(255,255,255,.1);
       display: grid;
       grid-template-columns: repeat(4,1fr);
+      z-index: 10;
     }
+
     .nav a {
       color: #777;
       text-decoration: none;
@@ -85,33 +196,88 @@
       align-items: center;
       justify-content: center;
     }
-    .nav a.active { color: #fff; }
+
+    .nav a.active {
+      color: #fff;
+    }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <div class="top">Brew Guide</div>
-    <h1>Vivid Geisha<br>Recipe</h1>
+    <div class="brand">QR Coffee Experience</div>
+
+    <div class="badge">Brew Guide</div>
+
+    <h1>Vivid<br>Geisha</h1>
+
+    <p class="desc">
+      이 커피는 향을 열고, 산미를 선명하게 남기는 방향으로 추출하는 것이 좋습니다.
+    </p>
 
     <section class="recipe-card">
-      <div class="step"><span>Dose</span><strong>20g</strong></div>
-      <div class="step"><span>Water</span><strong>300g</strong></div>
-      <div class="step"><span>Temperature</span><strong>92°C</strong></div>
-      <div class="step"><span>Grind</span><strong>Medium</strong></div>
+      <div class="recipe-title">Brewing Recipe</div>
+      <div class="recipe-meta">Clean · Floral · Tea-like Finish</div>
 
-      <div class="timer" id="timer">00:00</div>
+      <div class="recipe-grid">
+        <div class="chip">
+          <div class="chip-label">Coffee</div>
+          <div class="chip-value">20g</div>
+        </div>
 
-      <button onclick="startTimer()">Start Brew</button>
-      <button class="subbtn" onclick="resetTimer()">Reset</button>
+        <div class="chip">
+          <div class="chip-label">Water</div>
+          <div class="chip-value">300g</div>
+        </div>
+
+        <div class="chip">
+          <div class="chip-label">Temp</div>
+          <div class="chip-value">92°C</div>
+        </div>
+
+        <div class="chip">
+          <div class="chip-label">Ratio</div>
+          <div class="chip-value">1 : 15</div>
+        </div>
+      </div>
+
+      <div class="timer-box">
+        <div class="timer" id="timer">00:00</div>
+        <div class="current-step" id="currentStep">Ready to brew</div>
+      </div>
+
+      <div class="button-row">
+        <button class="primary" onclick="startTimer()">Start</button>
+        <button class="secondary" onclick="resetTimer()">Reset</button>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span>Bloom 40g</span>
+          <span class="time">0:00</span>
+        </div>
+
+        <div class="step">
+          <span>Pour to 140g</span>
+          <span class="time">0:40</span>
+        </div>
+
+        <div class="step">
+          <span>Pour to 230g</span>
+          <span class="time">1:20</span>
+        </div>
+
+        <div class="step">
+          <span>Finish to 300g</span>
+          <span class="time">2:00</span>
+        </div>
+
+        <div class="step">
+          <span>Drawdown</span>
+          <span class="time">2:40 - 3:00</span>
+        </div>
+      </div>
     </section>
-
-    <p class="guide">
-      0:00 Bloom 40g<br>
-      0:40 Pour to 140g<br>
-      1:20 Pour to 230g<br>
-      2:00 Finish to 300g<br>
-      2:40 - 3:00 추출 완료
-    </p>
   </main>
 
   <nav class="nav">
@@ -128,7 +294,26 @@
     function updateTimer() {
       const m = String(Math.floor(seconds / 60)).padStart(2, "0");
       const s = String(seconds % 60).padStart(2, "0");
+
       document.getElementById("timer").innerText = `${m}:${s}`;
+
+      let step = "Ready to brew";
+
+      if (seconds >= 0 && seconds < 40) {
+        step = "Bloom 40g";
+      } else if (seconds >= 40 && seconds < 80) {
+        step = "Pour to 140g";
+      } else if (seconds >= 80 && seconds < 120) {
+        step = "Pour to 230g";
+      } else if (seconds >= 120 && seconds < 160) {
+        step = "Finish to 300g";
+      } else if (seconds >= 160 && seconds <= 180) {
+        step = "Drawdown";
+      } else if (seconds > 180) {
+        step = "Brew Complete";
+      }
+
+      document.getElementById("currentStep").innerText = step;
     }
 
     function startTimer() {
@@ -142,7 +327,8 @@
     function resetTimer() {
       clearInterval(interval);
       seconds = 0;
-      updateTimer();
+      document.getElementById("timer").innerText = "00:00";
+      document.getElementById("currentStep").innerText = "Ready to brew";
     }
   </script>
 </body>
