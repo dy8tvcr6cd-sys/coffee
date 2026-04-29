@@ -1,75 +1,184 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coffee Info</title>
-<style>
-:root{--bg:#F6F1E8;--card:#FFFDFC;--text:#1F1A16;--muted:#746B61;--line:rgba(31,26,22,.1);--brown:#2D2118;--accent:#C99A2E;--citrus:#F28A2E;--honey:#D6A93A;--clean:#8FC7D9}
-*{box-sizing:border-box}
-body{margin:0;background:#F6F1E8;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Pretendard",sans-serif;letter-spacing:-.03em}
-.wrap{max-width:520px;margin:0 auto;padding:22px 16px 96px}
-h1{font-size:38px;margin:0 0 16px}
-.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:16px;box-shadow:0 16px 44px rgba(45,33,24,.08)}
-p{color:var(--muted);line-height:1.65}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.item{background:white;border:1px solid var(--line);border-radius:18px;padding:16px}
-.label{font-size:12px;color:var(--muted);margin-bottom:6px}
-.value{font-weight:900}
-.dot{width:14px;height:14px;border-radius:50%;display:inline-block;margin-right:8px}
-.flavor{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 0 12px;backdrop-filter:blur(18px)}
-.nav a{text-align:center;text-decoration:none;color:var(--muted);font-size:12px;font-weight:800}
-.nav a.active{color:var(--brown)}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivid Geisha Info</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+      background: #080808;
+      color: #fff;
+    }
+    .page { padding: 28px 20px 100px; }
+    .top {
+      color: #8e8e8e;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-size: 36px;
+      letter-spacing: -0.05em;
+      margin: 0 0 26px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .card {
+      padding: 18px;
+      border-radius: 22px;
+      background: #141414;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .label {
+      color: #777;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .section-title {
+      margin-top: 38px;
+      margin-bottom: 16px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+    .flavor {
+      padding: 20px;
+      border-radius: 26px;
+      background: #121212;
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 12px;
+    }
+    .flavor-head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .bar {
+      height: 8px;
+      background: #272727;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+    .floral { width: 92%; background: #ff6aa2; }
+    .citrus { width: 84%; background: #ffd15c; }
+    .berry { width: 78%; background: #9b6cff; }
+    .tea { width: 72%; background: #72e0d1; }
+
+    .sensory {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 26px;
+      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      margin-top: 12px;
+      border: none;
+      outline: none;
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,.08);
+      color: white;
+      resize: none;
+      font-family: inherit;
+    }
+    .nav {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      height: 66px;
+      border-radius: 24px;
+      background: rgba(20,20,20,.86);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.1);
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+    .nav a {
+      color: #777;
+      text-decoration: none;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav a.active { color: #fff; }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Coffee Info</h1>
+  <main class="page">
+    <div class="top">Coffee Detail</div>
+    <h1>Vivid Geisha</h1>
 
-  <section class="card">
-    <h2>Colombia Yellow Bourbon</h2>
-    <p>
-      이 커피는 밝은 산미와 부드러운 단맛, 깨끗한 여운이 특징입니다.
-      복잡하게 무겁기보다, 편하게 마시면서도 선명한 인상을 남기는 타입입니다.
-    </p>
-  </section>
+    <section class="grid">
+      <div class="card">
+        <div class="label">Origin</div>
+        <div class="value">Ethiopia</div>
+      </div>
+      <div class="card">
+        <div class="label">Variety</div>
+        <div class="value">Geisha</div>
+      </div>
+      <div class="card">
+        <div class="label">Process</div>
+        <div class="value">Washed</div>
+      </div>
+      <div class="card">
+        <div class="label">Roast</div>
+        <div class="value">Light</div>
+      </div>
+    </section>
 
-  <section class="card">
-    <h2>Origin</h2>
-    <div class="grid">
-      <div class="item"><div class="label">Country</div><div class="value">Colombia</div></div>
-      <div class="item"><div class="label">Variety</div><div class="value">Yellow Bourbon</div></div>
-      <div class="item"><div class="label">Process</div><div class="value">Washed</div></div>
-      <div class="item"><div class="label">Roast</div><div class="value">Light Medium</div></div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Flavor Notes</h2>
-
-    <div class="flavor">
-      <strong><span class="dot" style="background:var(--citrus)"></span>Citrus</strong>
-      <p>오렌지처럼 밝고 선명한 산미가 첫인상을 만듭니다.</p>
-    </div>
+    <div class="section-title">Flavor Profile</div>
 
     <div class="flavor">
-      <strong><span class="dot" style="background:var(--honey)"></span>Honey</strong>
-      <p>산미 뒤로 꿀 같은 부드러운 단맛이 이어집니다.</p>
+      <div class="flavor-head"><span>Floral</span><span>92</span></div>
+      <div class="bar"><div class="fill floral"></div></div>
     </div>
 
     <div class="flavor">
-      <strong><span class="dot" style="background:var(--clean)"></span>Clean</strong>
-      <p>마신 뒤 입안에 남는 느낌이 맑고 깔끔합니다.</p>
+      <div class="flavor-head"><span>Citrus</span><span>84</span></div>
+      <div class="bar"><div class="fill citrus"></div></div>
     </div>
-  </section>
-</div>
 
-<nav class="nav">
-  <a href="index.html">Home</a>
-  <a href="brew.html">Brew</a>
-  <a href="info.html" class="active">Info</a>
-  <a href="buy.html">Buy</a>
-</nav>
+    <div class="flavor">
+      <div class="flavor-head"><span>Berry</span><span>78</span></div>
+      <div class="bar"><div class="fill berry"></div></div>
+    </div>
+
+    <div class="flavor">
+      <div class="flavor-head"><span>Tea-like</span><span>72</span></div>
+      <div class="bar"><div class="fill tea"></div></div>
+    </div>
+
+    <section class="sensory">
+      <strong>나의 센서리 기록</strong>
+      <textarea placeholder="마셔보고 느낀 향, 산미, 단맛, 여운을 기록해보세요."></textarea>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a class="active" href="info.html">Info</a>
+    <a href="brew.html">Brew</a>
+    <a href="buy.html">Buy</a>
+  </nav>
 </body>
 </html>
