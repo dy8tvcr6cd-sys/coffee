@@ -1,89 +1,154 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roastery Wings</title>
-<style>
-:root{
-  --bg:#F6F1E8;--card:#FFFDFC;--text:#1F1A16;--muted:#746B61;
-  --line:rgba(31,26,22,.1);--brown:#2D2118;--accent:#C99A2E;
-  --citrus:#F28A2E;--honey:#D6A93A;--clean:#8FC7D9;
-}
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,#FBF8F1,#F6F1E8);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Pretendard",sans-serif;letter-spacing:-.03em}
-.wrap{max-width:520px;margin:0 auto;padding:22px 16px 96px}
-.top{display:flex;justify-content:space-between;margin-bottom:34px;font-size:13px;color:var(--muted)}
-.logo{font-weight:900;color:var(--brown)}
-.badge{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff}
-.roastery{color:var(--accent);font-weight:900;font-size:14px;margin-bottom:12px}
-h1{margin:0;font-size:46px;line-height:.98;font-weight:950}
-.lead{margin:18px 0 24px;color:var(--muted);font-size:18px;line-height:1.5}
-.btn{display:block;width:100%;padding:18px 20px;border-radius:18px;background:var(--brown);color:white;text-align:center;text-decoration:none;font-weight:900}
-.card{background:rgba(255,255,255,.84);border:1px solid var(--line);border-radius:24px;padding:20px;margin-top:16px;box-shadow:0 16px 44px rgba(45,33,24,.08)}
-.card h2{margin:0 0 14px;font-size:22px}
-.row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
-.row:last-child{border-bottom:none}
-.left{display:flex;align-items:center;gap:12px}
-.dot{width:15px;height:15px;border-radius:50%}
-.name{font-weight:900}
-.desc{font-size:13px;color:var(--muted);margin-top:3px}
-.intensity{color:var(--accent);font-weight:900}
-.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.quick a{padding:15px;border-radius:16px;background:white;border:1px solid var(--line);text-decoration:none;color:var(--text);font-weight:850;text-align:center}
-.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 0 12px;backdrop-filter:blur(18px)}
-.nav a{text-align:center;text-decoration:none;color:var(--muted);font-size:12px;font-weight:800}
-.nav a.active{color:var(--brown)}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivid Geisha</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+      background: #080808;
+      color: #fff;
+    }
+    .page {
+      min-height: 100vh;
+      padding: 28px 20px 100px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(255, 212, 92, .16), transparent 35%),
+        radial-gradient(circle at 10% 80%, rgba(255, 88, 140, .14), transparent 38%),
+        #080808;
+    }
+    .brand {
+      font-size: 13px;
+      color: #9c9c9c;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 64px;
+    }
+    .badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      font-size: 13px;
+      color: #d8d8d8;
+      background: rgba(255,255,255,.04);
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 48px;
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      margin: 0;
+    }
+    .desc {
+      margin-top: 18px;
+      font-size: 17px;
+      line-height: 1.6;
+      color: #b8b8b8;
+    }
+    .hero-card {
+      margin-top: 42px;
+      padding: 22px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    }
+    .coffee-name {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+    .coffee-meta {
+      margin-top: 8px;
+      color: #aaa;
+      font-size: 14px;
+    }
+    .note {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .chip {
+      padding: 14px 10px;
+      text-align: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,.07);
+      font-size: 13px;
+    }
+    .nav {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      height: 66px;
+      border-radius: 24px;
+      background: rgba(20,20,20,.86);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.1);
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      z-index: 10;
+    }
+    .nav a {
+      color: #777;
+      text-decoration: none;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .nav a.active { color: #fff; }
+    .cta {
+      display: block;
+      margin-top: 28px;
+      padding: 17px 20px;
+      border-radius: 18px;
+      background: #fff;
+      color: #000;
+      text-align: center;
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top">
-    <div class="logo">ROASTERY WINGS</div>
-    <div class="badge">QR Coffee Guide</div>
-  </div>
+  <main class="page">
+    <div class="brand">QR Coffee Experience</div>
 
-  <section>
-    <div class="roastery">Kook Coffee Roasters</div>
-    <h1>Colombia<br>Yellow Bourbon</h1>
-    <p class="lead">잘 익은 오렌지, 꿀 같은 단맛, 깨끗한 여운이 이어지는 데일리 필터 커피.</p>
-    <a href="buy.html" class="btn">이 원두 다시 구매하기</a>
-  </section>
+    <div class="badge">Limited Release</div>
 
-  <section class="card">
-    <h2>Flavor Preview</h2>
+    <h1>Vivid<br>Geisha</h1>
 
-    <div class="row">
-      <div class="left"><div class="dot" style="background:var(--citrus)"></div><div><div class="name">Citrus</div><div class="desc">밝은 오렌지 산미</div></div></div>
-      <div class="intensity">●●●●○</div>
-    </div>
+    <p class="desc">
+      밝은 꽃향, 선명한 시트러스, 차처럼 깨끗한 여운을 가진 게이샤 커피입니다.
+    </p>
 
-    <div class="row">
-      <div class="left"><div class="dot" style="background:var(--honey)"></div><div><div class="name">Honey</div><div class="desc">부드러운 단맛</div></div></div>
-      <div class="intensity">●●●○○</div>
-    </div>
+    <section class="hero-card">
+      <div class="coffee-name">Vivid Geisha</div>
+      <div class="coffee-meta">Ethiopia · Geisha · Washed · Light Roast</div>
 
-    <div class="row">
-      <div class="left"><div class="dot" style="background:var(--clean)"></div><div><div class="name">Clean</div><div class="desc">맑고 긴 여운</div></div></div>
-      <div class="intensity">●●●●○</div>
-    </div>
-  </section>
+      <div class="note">
+        <div class="chip">Floral</div>
+        <div class="chip">Citrus</div>
+        <div class="chip">Tea-like</div>
+      </div>
 
-  <section class="card">
-    <h2>Next Step</h2>
-    <p class="desc">레시피를 따라 추출하고, 마신 뒤 센서리 폼을 남기면 더 잘 맞는 커피를 추천받을 수 있습니다.</p>
-    <div class="quick">
-      <a href="brew.html">레시피 보기</a>
-      <a href="info.html">원두 정보</a>
-    </div>
-  </section>
-</div>
+      <a class="cta" href="info.html">원두 정보 보기</a>
+    </section>
+  </main>
 
-<nav class="nav">
-  <a href="index.html" class="active">Home</a>
-  <a href="brew.html">Brew</a>
-  <a href="info.html">Info</a>
-  <a href="buy.html">Buy</a>
-</nav>
+  <nav class="nav">
+    <a class="active" href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="brew.html">Brew</a>
+    <a href="buy.html">Buy</a>
+  </nav>
 </body>
 </html>
