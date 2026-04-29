@@ -1,68 +1,327 @@
-<div class="section-title">Farm Story</div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vivid Geisha Info</title>
 
-<div class="card">
+<style>
+* { box-sizing: border-box; }
 
-  <div style="line-height:1.7; color:#b8b8b8; font-size:15px;">
-    이 커피는 에티오피아 예가체프 지역의 고지대에서 재배된 게이샤 품종으로,
-    해발 약 1,900 ~ 2,100m에서 자란 체리만을 선별하여 워시드 프로세스로 가공되었습니다.
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+  background: #080808;
+  color: #fff;
+}
 
-    높은 고도와 큰 일교차로 인해 체리의 당도와 산미 구조가 매우 선명하게 형성되며,
-    깨끗한 발효와 세척 과정을 통해 불필요한 잡미 없이 투명한 컵을 만들어냅니다.
+.page {
+  min-height: 100vh;
+  padding: 28px 20px 110px;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(255,212,92,.15), transparent 35%),
+    radial-gradient(circle at 10% 80%, rgba(255,88,140,.13), transparent 40%),
+    #080808;
+}
 
-    특히 이 로트는 꽃향 계열의 아로마가 두드러지며,
-    과도한 발효 느낌 없이 정제된 산미와 티라이크한 질감을 특징으로 합니다.
+.brand {
+  font-size: 13px;
+  color: #9c9c9c;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  font-size: 13px;
+  color: #d8d8d8;
+  background: rgba(255,255,255,.04);
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  margin: 0;
+}
+
+.sub {
+  margin-top: 12px;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.section-title {
+  margin-top: 36px;
+  margin-bottom: 14px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.card {
+  padding: 22px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.item {
+  padding: 15px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.07);
+}
+
+.label {
+  font-size: 11px;
+  color: #888;
+}
+
+.value {
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.flavor {
+  margin-bottom: 16px;
+}
+
+.flavor-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.bar {
+  height: 7px;
+  background: #222;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.floral { width:92%; background:#ff6aa2; }
+.citrus { width:84%; background:#ffd15c; }
+.berry { width:78%; background:#9b6cff; }
+.tea { width:72%; background:#72e0d1; }
+
+.text {
+  color: #c8c8c8;
+  font-size: 15px;
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.note-box {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.note-label {
+  font-size: 13px;
+  color: #ffd15c;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.nav {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 18px;
+  height: 66px;
+  border-radius: 24px;
+  background: rgba(20,20,20,.86);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.1);
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  z-index: 10;
+}
+
+.nav a {
+  color: #777;
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav a.active {
+  color: #fff;
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <div class="brand">QR Coffee Experience</div>
+
+  <div class="badge">Coffee Detail</div>
+
+  <h1>Vivid<br>Geisha</h1>
+
+  <div class="sub">
+    Ethiopia · Geisha · Washed · Light Roast
   </div>
 
-</div>
+  <div class="section-title">Basic Info</div>
 
+  <section class="card">
+    <div class="grid">
+      <div class="item">
+        <div class="label">Origin</div>
+        <div class="value">Ethiopia</div>
+      </div>
+      <div class="item">
+        <div class="label">Variety</div>
+        <div class="value">Geisha</div>
+      </div>
+      <div class="item">
+        <div class="label">Process</div>
+        <div class="value">Washed</div>
+      </div>
+      <div class="item">
+        <div class="label">Roast</div>
+        <div class="value">Light</div>
+      </div>
+    </div>
+  </section>
 
-<div class="section-title">Cup Note</div>
+  <div class="section-title">Flavor Profile</div>
 
-<div class="card">
-
-  <div style="margin-bottom:16px;">
-    <div style="font-size:14px; color:#aaa; margin-bottom:6px;">
-      HOT → WARM
+  <section class="card">
+    <div class="flavor">
+      <div class="flavor-head"><span>Floral</span><span>92</span></div>
+      <div class="bar"><div class="fill floral"></div></div>
     </div>
 
-    <div style="line-height:1.7; font-size:15px; color:#dcdcdc;">
-      추출 직후 높은 온도에서는 자스민과 같은 플로럴 향이 먼저 열리며,
-      밝고 날카로운 시트러스 산미가 입안을 빠르게 채웁니다.
-      전체적으로 향이 위로 퍼지는 구조를 가지며,
-      깨끗하고 선명한 첫 인상을 형성합니다.
-    </div>
-  </div>
-
-  <div>
-    <div style="font-size:14px; color:#aaa; margin-bottom:6px;">
-      WARM → COLD
+    <div class="flavor">
+      <div class="flavor-head"><span>Citrus</span><span>84</span></div>
+      <div class="bar"><div class="fill citrus"></div></div>
     </div>
 
-    <div style="line-height:1.7; font-size:15px; color:#dcdcdc;">
-      온도가 내려가면서 산미는 보다 부드럽고 둥글게 정리되며,
-      베리 계열의 은은한 단맛이 느껴지기 시작합니다.
-      이후에는 차처럼 맑고 가벼운 질감이 강조되며,
-      길고 깨끗한 여운으로 마무리됩니다.
+    <div class="flavor">
+      <div class="flavor-head"><span>Berry</span><span>78</span></div>
+      <div class="bar"><div class="fill berry"></div></div>
     </div>
-  </div>
 
-</div>
+    <div class="flavor">
+      <div class="flavor-head"><span>Tea-like</span><span>72</span></div>
+      <div class="bar"><div class="fill tea"></div></div>
+    </div>
 
+    <div class="note-box">
+      <div class="note-label">Flavor Interpretation</div>
+      <div class="text">
+        이 커피는 플로럴한 향이 중심을 잡고 있으며, 밝고 선명한 시트러스 산미가 입안에서 빠르게 퍼집니다.
+        후반으로 갈수록 차처럼 깔끔한 질감이 남아 무겁지 않고 가볍게 이어지는 구조를 가지고 있습니다.
+      </div>
+    </div>
+  </section>
 
-<div class="section-title">Roasting Intent</div>
+  <div class="section-title">Farm Story</div>
 
-<div class="card">
+  <section class="card">
+    <div class="text">
+      이 커피는 에티오피아 예가체프 지역의 고지대에서 재배된 게이샤 품종으로,
+      해발 약 1,900m에서 2,100m 사이의 환경에서 자란 체리를 선별해 워시드 프로세스로 가공했습니다.
+      높은 고도와 큰 일교차는 체리의 당도와 산미 구조를 선명하게 만들고,
+      세척 가공은 불필요한 발효감 없이 투명하고 깨끗한 컵을 만드는 데 집중합니다.
+    </div>
+  </section>
 
-  <div style="line-height:1.7; font-size:15px; color:#b8b8b8;">
-    이 커피는 게이샤 특유의 플로럴 아로마와 투명한 산미를 최대한 살리기 위해
-    전체적인 열량을 강하게 밀기보다,
-    메일라드 구간을 길게 가져가며 단맛 구조를 안정적으로 형성하는 방향으로 로스팅되었습니다.
+  <div class="section-title">Cup Note by Temperature</div>
 
-    1차 크랙 이후 디벨롭은 짧게 유지하여
-    무게감보다는 향의 확산과 깨끗한 피니시를 우선으로 설계했으며,
+  <section class="card">
+    <div class="note-box">
+      <div class="note-label">HOT → WARM</div>
+      <div class="text">
+        추출 직후에는 자스민 같은 플로럴 향이 먼저 열리고,
+        밝은 레몬 계열의 시트러스 산미가 선명하게 느껴집니다.
+        전체적으로 향이 위로 퍼지는 구조이며 첫 인상은 깨끗하고 화사합니다.
+      </div>
+    </div>
 
-    결과적으로 “향이 먼저 올라오고, 가볍게 사라지는”
-    티라이크한 컵을 의도했습니다.
-  </div>
+    <div class="note-box">
+      <div class="note-label">WARM → COLD</div>
+      <div class="text">
+        온도가 내려가면서 산미는 부드럽고 둥글게 정리됩니다.
+        은은한 베리 계열의 단맛이 올라오고,
+        마지막에는 차처럼 맑고 가벼운 질감과 긴 여운이 남습니다.
+      </div>
+    </div>
+  </section>
 
-</div>
+  <div class="section-title">Roasting Intent</div>
+
+  <section class="card">
+    <div class="text">
+      이 로스팅은 게이샤 특유의 플로럴 아로마와 투명한 산미를 살리는 것을 목표로 했습니다.
+      강한 무게감보다 향의 확산과 깨끗한 피니시를 우선했고,
+      메일라드 구간에서는 단맛의 기반을 만들되 1차 크랙 이후 디벨롭은 짧게 가져갔습니다.
+      결과적으로 향이 먼저 올라오고, 산미가 선명하게 지나간 뒤,
+      티라이크한 질감으로 마무리되는 컵을 의도했습니다.
+    </div>
+  </section>
+
+  <div class="section-title">Your Sensory</div>
+
+  <section class="card">
+    <div class="text">
+      직접 마시며 느낀 향, 산미, 단맛, 여운을 기록해보세요.
+    </div>
+    <textarea placeholder="예: 처음에는 꽃향이 강했고, 식으면서 베리 단맛과 차 같은 여운이 느껴졌습니다."></textarea>
+  </section>
+
+</main>
+
+<nav class="nav">
+  <a href="index.html">Home</a>
+  <a class="active" href="info.html">Info</a>
+  <a href="brew.html">Brew</a>
+  <a href="buy.html">Buy</a>
+</nav>
+
+</body>
+</html>
