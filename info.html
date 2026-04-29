@@ -1,184 +1,68 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vivid Geisha Info</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
-      background: #080808;
-      color: #fff;
-    }
-    .page { padding: 28px 20px 100px; }
-    .top {
-      color: #8e8e8e;
-      font-size: 13px;
-      margin-bottom: 22px;
-    }
-    h1 {
-      font-size: 36px;
-      letter-spacing: -0.05em;
-      margin: 0 0 26px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-    .card {
-      padding: 18px;
-      border-radius: 22px;
-      background: #141414;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .label {
-      color: #777;
-      font-size: 12px;
-      margin-bottom: 8px;
-    }
-    .value {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .section-title {
-      margin-top: 38px;
-      margin-bottom: 16px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-    }
-    .flavor {
-      padding: 20px;
-      border-radius: 26px;
-      background: #121212;
-      border: 1px solid rgba(255,255,255,.08);
-      margin-bottom: 12px;
-    }
-    .flavor-head {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-    .bar {
-      height: 8px;
-      background: #272727;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .fill {
-      height: 100%;
-      border-radius: 999px;
-    }
-    .floral { width: 92%; background: #ff6aa2; }
-    .citrus { width: 84%; background: #ffd15c; }
-    .berry { width: 78%; background: #9b6cff; }
-    .tea { width: 72%; background: #72e0d1; }
+<div class="section-title">Farm Story</div>
 
-    .sensory {
-      margin-top: 18px;
-      padding: 20px;
-      border-radius: 26px;
-      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.1);
-    }
-    textarea {
-      width: 100%;
-      min-height: 110px;
-      margin-top: 12px;
-      border: none;
-      outline: none;
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(255,255,255,.08);
-      color: white;
-      resize: none;
-      font-family: inherit;
-    }
-    .nav {
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 18px;
-      height: 66px;
-      border-radius: 24px;
-      background: rgba(20,20,20,.86);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.1);
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-    }
-    .nav a {
-      color: #777;
-      text-decoration: none;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .nav a.active { color: #fff; }
-  </style>
-</head>
-<body>
-  <main class="page">
-    <div class="top">Coffee Detail</div>
-    <h1>Vivid Geisha</h1>
+<div class="card">
 
-    <section class="grid">
-      <div class="card">
-        <div class="label">Origin</div>
-        <div class="value">Ethiopia</div>
-      </div>
-      <div class="card">
-        <div class="label">Variety</div>
-        <div class="value">Geisha</div>
-      </div>
-      <div class="card">
-        <div class="label">Process</div>
-        <div class="value">Washed</div>
-      </div>
-      <div class="card">
-        <div class="label">Roast</div>
-        <div class="value">Light</div>
-      </div>
-    </section>
+  <div style="line-height:1.7; color:#b8b8b8; font-size:15px;">
+    이 커피는 에티오피아 예가체프 지역의 고지대에서 재배된 게이샤 품종으로,
+    해발 약 1,900 ~ 2,100m에서 자란 체리만을 선별하여 워시드 프로세스로 가공되었습니다.
 
-    <div class="section-title">Flavor Profile</div>
+    높은 고도와 큰 일교차로 인해 체리의 당도와 산미 구조가 매우 선명하게 형성되며,
+    깨끗한 발효와 세척 과정을 통해 불필요한 잡미 없이 투명한 컵을 만들어냅니다.
 
-    <div class="flavor">
-      <div class="flavor-head"><span>Floral</span><span>92</span></div>
-      <div class="bar"><div class="fill floral"></div></div>
+    특히 이 로트는 꽃향 계열의 아로마가 두드러지며,
+    과도한 발효 느낌 없이 정제된 산미와 티라이크한 질감을 특징으로 합니다.
+  </div>
+
+</div>
+
+
+<div class="section-title">Cup Note</div>
+
+<div class="card">
+
+  <div style="margin-bottom:16px;">
+    <div style="font-size:14px; color:#aaa; margin-bottom:6px;">
+      HOT → WARM
     </div>
 
-    <div class="flavor">
-      <div class="flavor-head"><span>Citrus</span><span>84</span></div>
-      <div class="bar"><div class="fill citrus"></div></div>
+    <div style="line-height:1.7; font-size:15px; color:#dcdcdc;">
+      추출 직후 높은 온도에서는 자스민과 같은 플로럴 향이 먼저 열리며,
+      밝고 날카로운 시트러스 산미가 입안을 빠르게 채웁니다.
+      전체적으로 향이 위로 퍼지는 구조를 가지며,
+      깨끗하고 선명한 첫 인상을 형성합니다.
+    </div>
+  </div>
+
+  <div>
+    <div style="font-size:14px; color:#aaa; margin-bottom:6px;">
+      WARM → COLD
     </div>
 
-    <div class="flavor">
-      <div class="flavor-head"><span>Berry</span><span>78</span></div>
-      <div class="bar"><div class="fill berry"></div></div>
+    <div style="line-height:1.7; font-size:15px; color:#dcdcdc;">
+      온도가 내려가면서 산미는 보다 부드럽고 둥글게 정리되며,
+      베리 계열의 은은한 단맛이 느껴지기 시작합니다.
+      이후에는 차처럼 맑고 가벼운 질감이 강조되며,
+      길고 깨끗한 여운으로 마무리됩니다.
     </div>
+  </div>
 
-    <div class="flavor">
-      <div class="flavor-head"><span>Tea-like</span><span>72</span></div>
-      <div class="bar"><div class="fill tea"></div></div>
-    </div>
+</div>
 
-    <section class="sensory">
-      <strong>나의 센서리 기록</strong>
-      <textarea placeholder="마셔보고 느낀 향, 산미, 단맛, 여운을 기록해보세요."></textarea>
-    </section>
-  </main>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a class="active" href="info.html">Info</a>
-    <a href="brew.html">Brew</a>
-    <a href="buy.html">Buy</a>
-  </nav>
-</body>
-</html>
+<div class="section-title">Roasting Intent</div>
+
+<div class="card">
+
+  <div style="line-height:1.7; font-size:15px; color:#b8b8b8;">
+    이 커피는 게이샤 특유의 플로럴 아로마와 투명한 산미를 최대한 살리기 위해
+    전체적인 열량을 강하게 밀기보다,
+    메일라드 구간을 길게 가져가며 단맛 구조를 안정적으로 형성하는 방향으로 로스팅되었습니다.
+
+    1차 크랙 이후 디벨롭은 짧게 유지하여
+    무게감보다는 향의 확산과 깨끗한 피니시를 우선으로 설계했으며,
+
+    결과적으로 “향이 먼저 올라오고, 가볍게 사라지는”
+    티라이크한 컵을 의도했습니다.
+  </div>
+
+</div>
